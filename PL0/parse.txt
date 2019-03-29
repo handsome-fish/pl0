@@ -1,0 +1,1 @@
+['program', ['block', ['const'], ['var', 'f', 'n'], ['proc', 'fact'], ['stmt', ['read', 'n'], ['stmt', ['call', 'fact'], ['stmt', ['write', ['ident', 'f']], ['stmt', None, None]]]]]]

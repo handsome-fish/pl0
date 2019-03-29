@@ -1,0 +1,363 @@
+_STACK SEGMENT STACK 'STACK'
+DB 65535 DUP(0)
+TOS DW 0
+_STACK ENDS
+
+_DATA SEGMENT
+out_str db "Output: $"
+in_str db "Input a number:$"
+ret_str db 10, "$"
+_DATA ENDS
+
+_TEXT SEGMENT 'CODE'
+ASSUME ECS:_TEXT, DS:_DATA, SS:_STACK
+Start:
+
+MOV AX, _DATA
+MOV DS, AX
+CLI
+MOV AX, _STACK
+MOV SS, AX
+MOV SP, Offset TOS
+MOV BP, Offset TOS - 2
+STI
+
+MOV SS:[BP-4], __end_prog
+MOV SS:[BP-2], 0
+MOV SS:[BP], 0
+__label_1
+  MOV  AX, BP
+  SUB  AX, 4
+  MOV  SP, AX
+__label_2
+  MOV  AX, BP
+  SUB  AX, 2
+  MOV  SP, AX
+__label_3
+  JMP  __label_32
+
+__label_4
+  MOV  AX, BP
+  SUB  AX, 4
+  MOV  SP, AX
+__label_5
+  MOV  AX, BP
+  SUB  AX, 0
+  MOV  SP, AX
+__label_6
+  MOV  CX, 1
+  MOV  BX, BP
+__temp_lable0:
+  CMP  CX, 0
+  JE   __temp_lable1
+  DEC  CX
+  MOV  BX, SS:[BX]
+  JMP  __temp_lable0
+__temp_lable1:
+  MOV  AX, 8
+  SUB  BX, AX
+  PUSH SS:[BX]
+__label_7
+  MOV  CX, 0
+  MOV  BX, BP
+__temp_lable2:
+  CMP  CX, 0
+  JE   __temp_lable3
+  DEC  CX
+  MOV  BX, SS:[BX]
+  JMP  __temp_lable2
+__temp_lable3:
+  MOV  AX, 6
+  SUB  BX, AX
+  POP  AX
+  MOV  SS:[BX], AX
+__label_8
+  MOV  CX, 1
+  MOV  BX, BP
+__temp_lable4:
+  CMP  CX, 0
+  JE   __temp_lable5
+  DEC  CX
+  MOV  BX, SS:[BX]
+  JMP  __temp_lable4
+__temp_lable5:
+  MOV  AX, 8
+  SUB  BX, AX
+  PUSH SS:[BX]
+__label_9
+  MOV AX, 1
+
+  PUSH AX
+__label_10
+  POP  BX
+  POP  AX
+  SUB  AX, BX
+  PUSH AX
+__label_11
+  MOV  CX, 1
+  MOV  BX, BP
+__temp_lable6:
+  CMP  CX, 0
+  JE   __temp_lable7
+  DEC  CX
+  MOV  BX, SS:[BX]
+  JMP  __temp_lable6
+__temp_lable7:
+  MOV  AX, 8
+  SUB  BX, AX
+  POP  AX
+  MOV  SS:[BX], AX
+__label_12
+  MOV  CX, 1
+  MOV  BX, BP
+__temp_lable8:
+  CMP  CX, 0
+  JE   __temp_lable9
+  DEC  CX
+  MOV  BX, SS:[BX]
+  JMP  __temp_lable8
+__temp_lable9:
+  MOV  AX, 8
+  SUB  BX, AX
+  PUSH SS:[BX]
+__label_13
+  MOV AX, 0
+
+  PUSH AX
+__label_14
+  POP  BX
+  POP  AX
+  CMP  AX, BX
+  JL    __temp_lable10
+  PUSH 0
+  JMP  __temp_lable_next10
+__temp_lable10:
+  PUSH 1
+__temp_lable_next10:
+__label_15
+  POP  AX
+  CMP  AX, 0
+  JE   __label_19
+
+__label_16
+  MOV AX, 1
+
+  PUSH AX
+__label_17
+  POP  AX
+  NEG  AX
+  PUSH AX
+__label_18
+  MOV  CX, 1
+  MOV  BX, BP
+__temp_lable11:
+  CMP  CX, 0
+  JE   __temp_lable12
+  DEC  CX
+  MOV  BX, SS:[BX]
+  JMP  __temp_lable11
+__temp_lable12:
+  MOV  AX, 6
+  SUB  BX, AX
+  POP  AX
+  MOV  SS:[BX], AX
+__label_19
+  JMP  __label_27
+
+__label_20
+  MOV  CX, 1
+  MOV  BX, BP
+__temp_lable13:
+  CMP  CX, 0
+  JE   __temp_lable14
+  DEC  CX
+  MOV  BX, SS:[BX]
+  JMP  __temp_lable13
+__temp_lable14:
+  MOV  AX, 8
+  SUB  BX, AX
+  PUSH SS:[BX]
+__label_21
+  MOV AX, 0
+
+  PUSH AX
+__label_22
+  POP  BX
+  POP  AX
+  CMP  AX, BX
+  JE   __temp_lable15
+  PUSH 0
+  JMP  __temp_lable_next15
+__temp_lable15:
+  PUSH 1
+__temp_lable_next15:
+__label_23
+  POP  AX
+  CMP  AX, 0
+  JE   __label_26
+
+__label_24
+  MOV AX, 1
+
+  PUSH AX
+__label_25
+  MOV  CX, 1
+  MOV  BX, BP
+__temp_lable16:
+  CMP  CX, 0
+  JE   __temp_lable17
+  DEC  CX
+  MOV  BX, SS:[BX]
+  JMP  __temp_lable16
+__temp_lable17:
+  MOV  AX, 6
+  SUB  BX, AX
+  POP  AX
+  MOV  SS:[BX], AX
+__label_26
+  JMP  __label_27
+
+__label_27
+  MOV  CX, 1
+  MOV  BX, BP
+__temp_lable18:
+  CMP  CX, 0
+  JE   __temp_lable19
+  DEC  CX
+  MOV  BX, SS:[BX]
+  JMP  __temp_lable18
+__temp_lable19:
+  MOV  DX, BX
+  MOV  CX, BP
+  MOV  AX, SP
+  SUB  AX, 2
+  MOV  BP, AX
+  MOV  SS:[BP], DX
+  MOV  SS:[BP-2], CX
+  MOV  SS:[BP-4], __label_28
+  JMP  __label_3
+
+__label_28
+  MOV  CX, 1
+  MOV  BX, BP
+__temp_lable20:
+  CMP  CX, 0
+  JE   __temp_lable21
+  DEC  CX
+  MOV  BX, SS:[BX]
+  JMP  __temp_lable20
+__temp_lable21:
+  MOV  AX, 6
+  SUB  BX, AX
+  PUSH SS:[BX]
+__label_29
+  MOV  CX, 0
+  MOV  BX, BP
+__temp_lable22:
+  CMP  CX, 0
+  JE   __temp_lable23
+  DEC  CX
+  MOV  BX, SS:[BX]
+  JMP  __temp_lable22
+__temp_lable23:
+  MOV  AX, 6
+  SUB  BX, AX
+  PUSH SS:[BX]
+__label_30
+  POP  BX
+  POP  AX
+  IMUL BX
+  PUSH AX
+__label_31
+  MOV  CX, 1
+  MOV  BX, BP
+__temp_lable24:
+  CMP  CX, 0
+  JE   __temp_lable25
+  DEC  CX
+  MOV  BX, SS:[BX]
+  JMP  __temp_lable24
+__temp_lable25:
+  MOV  AX, 6
+  SUB  BX, AX
+  POP  AX
+  MOV  SS:[BX], AX
+__label_32
+  MOV  CX, SS:[BP-4]
+  MOV  BX, BP
+  MOV  AX, SS:[BP-2]
+  MOV  BP, AX
+  ADD  BX, 2
+  MOV  SP, BX
+  JMP  CX
+__label_33
+  MOV  AH, 09H
+  LEA  DX, ret_str
+  INT  21H
+__label_34
+  MOV  CX, 0
+  MOV  BX, BP
+__temp_lable26:
+  CMP  CX, 0
+  JE   __temp_lable27
+  DEC  CX
+  MOV  BX, SS:[BX]
+  JMP  __temp_lable26
+__temp_lable27:
+  MOV  AX, 8
+  SUB  BX, AX
+  POP  AX
+  MOV  SS:[BX], AX
+__label_35
+  MOV  CX, 0
+  MOV  BX, BP
+__temp_lable28:
+  CMP  CX, 0
+  JE   __temp_lable29
+  DEC  CX
+  MOV  BX, SS:[BX]
+  JMP  __temp_lable28
+__temp_lable29:
+  MOV  DX, BX
+  MOV  CX, BP
+  MOV  AX, SP
+  SUB  AX, 2
+  MOV  BP, AX
+  MOV  SS:[BP], DX
+  MOV  SS:[BP-2], CX
+  MOV  SS:[BP-4], __label_36
+  JMP  __label_3
+
+__label_36
+  MOV  CX, 0
+  MOV  BX, BP
+__temp_lable30:
+  CMP  CX, 0
+  JE   __temp_lable31
+  DEC  CX
+  MOV  BX, SS:[BX]
+  JMP  __temp_lable30
+__temp_lable31:
+  MOV  AX, 6
+  SUB  BX, AX
+  PUSH SS:[BX]
+__label_37
+  MOV  AH, 09H
+  LEA  DX, out_str
+  INT  21H
+  POP  AX
+  CALL printn
+__label_38
+  MOV  CX, SS:[BP-4]
+  MOV  BX, BP
+  MOV  AX, SS:[BP-2]
+  MOV  BP, AX
+  ADD  BX, 2
+  MOV  SP, BX
+  JMP  CX
+__end_prog:
+  MOV AX, 4C00H
+  INT 21H
+_TEXT ENDS
+
+END Start
